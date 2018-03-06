@@ -1,9 +1,16 @@
 # Tests:
 ### Source of Tests:
 
-These files are only supplied for test purposes of the charmm parser. Any other usage of the files 
-need appropriate license from the CHARMM. Please see the CHARMM page for more details 
-The tests are taken from `charmm` (Free Version 41b2) test in [charmm](http://charmm.chemistry.harvard.edu).
+The files in this directory and its subdirectories are only supplied for test purposes of this charmm parser of NOMAD. 
+Any other usage of these files needs an appropriate license from CHARMM [charmm](http://charmm.chemistry.harvard.edu). 
+
+Downloading these files are subject to having the appropriate license from CHARMM. 
+Before any download attempt of this package, user should accept that a license is 
+already issued by CHARMM.
+
+Please see the CHARMM page for more details on how to obtain a license [charmm](http://charmm.chemistry.harvard.edu).
+
+The tests are taken from the test directory of `charmm` (Free Version 41b2).
 
 ### Example Tests:
 
