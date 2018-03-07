@@ -6,16 +6,16 @@ import org.{ json4s => jn }
 import eu.{ nomad_lab => lab }
 import scala.collection.breakOut
 
-object CHARMMParser extends SimpleExternalParserGenerator(
-  name = "CHARMMParser",
+object CharmmParser extends SimpleExternalParserGenerator(
+  name = "CharmmParser",
   parserInfo = jn.JObject(
-    ("name" -> jn.JString("CHARMMParser")) ::
-      ("parserId" -> jn.JString("CHARMMParser" + lab.CHARMMVersionInfo.version)) ::
+    ("name" -> jn.JString("CharmmParser")) ::
+      ("parserId" -> jn.JString("CharmmParser" + lab.CharmmVersionInfo.version)) ::
       ("versionInfo" -> jn.JObject(
         ("nomadCoreVersion" -> jn.JObject(lab.NomadCoreVersionInfo.toMap.map {
           case (k, v) => k -> jn.JString(v.toString)
         }(breakOut): List[(String, jn.JString)])) ::
-          (lab.CHARMMVersionInfo.toMap.map {
+          (lab.CharmmVersionInfo.toMap.map {
             case (key, value) =>
               (key -> jn.JString(value.toString))
           }(breakOut): List[(String, jn.JString)])
