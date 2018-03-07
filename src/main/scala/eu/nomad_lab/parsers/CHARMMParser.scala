@@ -23,7 +23,7 @@ object CharmmParser extends SimpleExternalParserGenerator(
   ),
   mainFileTypes = Seq("text/.*"),
   mainFileRe = """\s*Chemistry\s*at\s*HARvard\s*Macromolecular\s*Mechanics\s*""".r,
-  cmd = Seq(DefaultPythonInterpreter.pythonExe(), "${envDir}/parsers/namd/parser/parser-namd/CHARMMParser.py",
+  cmd = Seq(DefaultPythonInterpreter.pythonExe(), "${envDir}/parsers/charmm/parser/parser-charmm/CHARMMParser.py",
     "${mainFilePath}"),
   resList = Seq(
     "parser-charmm/CHARMMParser.py",
@@ -35,10 +35,10 @@ object CharmmParser extends SimpleExternalParserGenerator(
     "nomad_meta_info/meta_types.nomadmetainfo.json"
   ) ++ DefaultPythonInterpreter.commonFiles(),
   dirMap = Map(
-    "parser-charmm" -> "parsers/namd/parser/parser-charmm",
+    "parser-charmm" -> "parsers/charmm/parser/parser-charmm",
     "nomad_meta_info" -> "nomad-meta-info/meta_info/nomad_meta_info",
     "python" -> "python-common/common/python/nomadcore"
   ) ++ DefaultPythonInterpreter.commonDirMapping(),
-  metaInfoEnv = Some(lab.meta.KnownMetaInfoEnvs.namd)
+  metaInfoEnv = Some(lab.meta.KnownMetaInfoEnvs.charmm)
 )
 
