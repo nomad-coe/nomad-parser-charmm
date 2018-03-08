@@ -18,7 +18,7 @@ input CARDS. The main input file is assumed to hold at least 80% of the commands
 ...The coordinate information of the most recent command before any given command in the second item of this list is assumed to be the input coordinates of the simulation. Similarly, the next `PRINT`, `WRITE` command after each simulation is also assumed to be the output coordinates if trajectory data (`IUNCRD` or `IUNWRI` units) are missing. 
 - Trajectory of the simulations are also accessed through MDDataAccess package of [python-common](https://gitlab.rzg.mpg.de/nomad-lab/python-common).
 
-## Download and 
+## Download and Installation
 The official version lives at:
 
     git@gitlab.mpcdf.mpg.de:nomad-lab/parser-charmm.git
