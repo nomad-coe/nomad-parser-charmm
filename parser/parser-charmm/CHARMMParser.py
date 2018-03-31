@@ -760,11 +760,6 @@ class CHARMMParser(SmartParser.ParserBase):
                 #self.MDData.initializeFileHandlers(self)
                 #if self.outputcoords:
                 #    self.outputpositions = self.outputcoords.positions()
-                #self.MDiter += self.MDstep
-                #self.MDiter += 1
-                #self.MDcurrentstep = int(self.MDiter)
-                #self.stepcontrolDict.update({"MDcurrentstep" : int(self.MDcurrentstep)})
-                #pass
 
     def onOpen_x_charmm_section_control_parameters(self, backend, gIndex, section):
         # keep track of the latest section
