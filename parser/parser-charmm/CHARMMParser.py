@@ -727,15 +727,15 @@ class CHARMMParser(SmartParser.ParserBase):
                     atLeastOneFileExist = True
                     trajDone = True
 
-        if atLeastOneFileExist:
-            updateDict = {
-                    'startSection'   : [[PARSERTAG+'_section_input_output_files']],
-                    'dictionary'     : self.fileDict
-                    }
-            self.metaStorage.update(updateDict)
-            self.metaStorage.updateBackend(backend.superBackend,
-                    startsection=[PARSERTAG+'_section_input_output_files'],
-                    autoopenclose=False)
+        #if atLeastOneFileExist:
+        #    updateDict = {
+        #            'startSection'   : [[PARSERTAG+'_section_input_output_files']],
+        #            'dictionary'     : self.fileDict
+        #            }
+        #    self.metaStorage.update(updateDict)
+        #    self.metaStorage.updateBackend(backend.superBackend,
+        #            startsection=[PARSERTAG+'_section_input_output_files'],
+        #            autoopenclose=False)
         if self.newTopo:
             if topoDone and atLeastOneFileExist:
                 self.MDData.initializeTopologyFileHandlers(self)
