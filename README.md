@@ -1,6 +1,6 @@
 # CHARMM Parser
 [NOMAD Laboratory CoE](http://nomad-coe.eu) parser for [CHARMM](https://www.charmm.org/charmm/)
-## Version 0.0.1
+## Version 0.0.2
 
 This is the parser for CHARMM (Chemistry at HARvard Macromolecular Mechanics) code in [CHARMM](https://www.charmm.org/charmm/).
 
