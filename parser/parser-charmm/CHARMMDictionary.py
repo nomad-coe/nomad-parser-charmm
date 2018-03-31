@@ -976,7 +976,7 @@ def get_updateDictionary(self, defname):
             valtype='int',
             lookupdict=self.mddataDict
             ),
-        'x_charmm_frame_sequence_high_frequency_correction_kinetic_energy_energy' : MetaInfoMap(startpage,
+        'x_charmm_frame_sequence_high_frequency_correction_kinetic_energy' : MetaInfoMap(startpage,
             activeSections=['section_frame_sequence'],
             depends=[{'store' : 'HFCKE'}],
             valtype='float',
