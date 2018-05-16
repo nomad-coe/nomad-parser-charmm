@@ -250,7 +250,8 @@ class CHARMMParser(SmartParser.ParserBase):
         self.metaStorage.updateBackend(backend.superBackend, 
                 startsection=['section_frame_sequence'],
                 autoopenclose=False)
-        backend.addValue("frame_sequence_to_sampling_ref", self.secSamplingGIndex)
+        if self.secSamplingGIndex is not None:
+            backend.addValue("frame_sequence_to_sampling_ref", self.secSamplingGIndex)
         backend.addArrayValues("frame_sequence_local_frames_ref", np.asarray(self.singleConfCalcs))
         backend.closeSection("section_frame_sequence", frameSequenceGIndex)
 
