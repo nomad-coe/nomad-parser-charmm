@@ -528,7 +528,7 @@ def get_updateDictionary(self, defname):
 #            'settings_geometry_optimization' : MetaInfoMap(startpage),
 #            'settings_metadynamics' : MetaInfoMap(startpage),
 #            'settings_molecular_dynamics' : MetaInfoMap(startpage),
-#            'settings_Monte_Carlo' : MetaInfoMap(startpage),
+#            'settings_monte_carlo' : MetaInfoMap(startpage),
 #        'geometry_optimization_energy_change' : MetaInfoMap(startpage,
 #            depends={
 #                '' : {'imin' : '1'},
@@ -743,9 +743,9 @@ def get_updateDictionary(self, defname):
         #    depends=[{'assign' : 'Force Field'}],
         #    lookupdict=self.mddataDict
         #    ),
-        'energy_T0_per_atom' : MetaInfoMap(startpage),
-        'energy_total_T0_per_atom' : MetaInfoMap(startpage),
-        'energy_total_T0' : MetaInfoMap(startpage,
+        'energy_t0_per_atom' : MetaInfoMap(startpage),
+        'energy_total_t0_per_atom' : MetaInfoMap(startpage),
+        'energy_total_t0' : MetaInfoMap(startpage,
             depends=[{'value' : 'ENERGY'}],
             valtype='float',
             unitdict=self.unitDict,
@@ -764,7 +764,7 @@ def get_updateDictionary(self, defname):
         'hessian_matrix' : MetaInfoMap(startpage),
         'single_configuration_calculation_converged' : MetaInfoMap(startpage),
         'single_configuration_calculation_to_system_ref' : MetaInfoMap(startpage),
-        'single_configuration_to_calculation_method_ref' : MetaInfoMap(startpage),
+        'single_configuration_calculation_to_method_ref' : MetaInfoMap(startpage),
         'time_calculation' : MetaInfoMap(startpage),
         'time_single_configuration_calculation_cpu1_end' : MetaInfoMap(startpage),
         'time_single_configuration_calculation_cpu1_start' : MetaInfoMap(startpage),
@@ -787,14 +787,14 @@ def get_updateDictionary(self, defname):
 
     # section_single_energy_van_der_Waals of section_single_configuration_calculation
     singlevdw = {
-        'energy_van_der_Waals_value' : MetaInfoMap(startpage,
+        'energy_van_der_waals_value' : MetaInfoMap(startpage,
             depends=[{'value' : 'VDWAALS'}],
             lookupdict=self.mddataDict,
             valtype='float',
             unitdict=self.unitDict,
             unit=self.akmaDict['energy'],
             #autoSections=True,
-            activeSections=['section_energy_van_der_Waals']
+            activeSections=['section_energy_van_der_waals']
             ),
         }
 
@@ -845,13 +845,13 @@ def get_updateDictionary(self, defname):
     #   Definitions for section_frame_sequence
     # ------------------------------------------
     frameseq = { 
-        #'frame_sequence_conserved_quantity_frames' : MetaInfoMap(startpage,
+        #'xxx_to_rm_frame_sequence_conserved_quantity_frames' : MetaInfoMap(startpage,
         #    depends=[{'store' : 'TS'}],
         #    valtype='int',
         #    lookupdict=self.mddataDict
         #    ),
         #'frame_sequence_conserved_quantity_stats' : MetaInfoMap(startpage),
-        #'frame_sequence_conserved_quantity' : MetaInfoMap(startpage,
+        #'xxx_conserved_quantity' : MetaInfoMap(startpage,
         #    depends=[{'store' : ''}],
         #    valtype='float',
         #    unitdict=self.unitDict,
@@ -860,27 +860,27 @@ def get_updateDictionary(self, defname):
         #    ),
         'frame_sequence_continuation_kind' : MetaInfoMap(startpage),
         'frame_sequence_external_url' : MetaInfoMap(startpage),
-        'frame_sequence_kinetic_energy_frames' : MetaInfoMap(startpage,
+        'xxx_to_rm_frame_sequence_kinetic_energy_frames' : MetaInfoMap(startpage,
             depends=[{'store' : 'STEP'}],
             valtype='int',
             lookupdict=self.mddataDict
             ),
         'frame_sequence_kinetic_energy_stats' : MetaInfoMap(startpage),
-        'frame_sequence_kinetic_energy' : MetaInfoMap(startpage,
+        'xxx_kinetic_energy' : MetaInfoMap(startpage,
             depends=[{'store' : 'TOTKE'}],
             valtype='float',
             unitdict=self.unitDict,
             unit=self.akmaDict['energy'],
             lookupdict=self.mddataDict
             ),
-        'frame_sequence_local_frames_ref' : MetaInfoMap(startpage),
-        'frame_sequence_potential_energy_frames' : MetaInfoMap(startpage,
+        'frame_sequence_to_frames_ref' : MetaInfoMap(startpage),
+        'xxx_to_rm_frame_sequence_potential_energy_frames' : MetaInfoMap(startpage,
             depends=[{'store' : 'STEP'}],
             valtype='int',
             lookupdict=self.mddataDict
             ),
         'frame_sequence_potential_energy_stats' : MetaInfoMap(startpage),
-        'frame_sequence_potential_energy' : MetaInfoMap(startpage,
+        'xxx_potential_energy' : MetaInfoMap(startpage,
             depends=[{'store' : 'ENERGY'}],
             valtype='float',
             unitdict=self.unitDict,
@@ -899,13 +899,13 @@ def get_updateDictionary(self, defname):
         #    unit='atmosphere',
         #    lookupdict=self.mddataDict
         #    ),
-        'frame_sequence_pressure_frames' : MetaInfoMap(startpage,
+        'xxx_to_rm_frame_sequence_pressure_frames' : MetaInfoMap(startpage,
             depends=[{'store' : 'STEP'}],
             valtype='int',
             lookupdict=self.mddataDict
             ),
         'frame_sequence_pressure_stats' : MetaInfoMap(startpage),
-        'frame_sequence_pressure' : MetaInfoMap(startpage,
+        'xxx_instant_pressure' : MetaInfoMap(startpage,
             depends=[{'store' : 'PRESSI'}],
             valtype='float',
             unitdict=self.unitDict,
@@ -950,13 +950,13 @@ def get_updateDictionary(self, defname):
         #    unit='Kelvin',
         #    lookupdict=self.mddataDict
         #    ),
-        'frame_sequence_temperature_frames' : MetaInfoMap(startpage,
+        'xxx_to_rm_frame_sequence_temperature_frames' : MetaInfoMap(startpage,
             depends=[{'store' : 'STEP'}],
             valtype='int',
             lookupdict=self.mddataDict
             ),
         'frame_sequence_temperature_stats' : MetaInfoMap(startpage),
-        'frame_sequence_temperature' : MetaInfoMap(startpage,
+        'xxx_instant_temperature' : MetaInfoMap(startpage,
             depends=[{'store' : 'TEMPERATURE'}],
             valtype='float',
             unitdict=self.unitDict,
@@ -1195,7 +1195,7 @@ def get_updateDictionary(self, defname):
             unit=self.akmaDict['energy'],
             lookupdict=self.mddataDict
             ),
-        #'frame_sequence_to_sampling_ref' : MetaInfoMap(startpage),
+        #'frame_sequence_to_sampling_method_ref' : MetaInfoMap(startpage),
         'geometry_optimization_converged' : MetaInfoMap(startpage,
             depends=[
                 {'test' : [["MINI", " is not None"],
@@ -1214,7 +1214,7 @@ def get_updateDictionary(self, defname):
         #    value=(lambda x: np.array(x['val']).flatten().shape[0] if(
         #        x is not None and x['val'] is not None) else None)(
         #        self.metaStorage.fetchAttrValue(
-        #            'frame_sequence_conserved_quantity_frames'
+        #            'xxx_to_rm_frame_sequence_conserved_quantity_frames'
         #            )
         #        )
         #    ),
@@ -1222,7 +1222,7 @@ def get_updateDictionary(self, defname):
             value=(lambda x: np.array(x['val']).flatten().shape[0] if(
                 x is not None and x['val'] is not None) else None)(
                 self.metaStorage.fetchAttrValue(
-                    'frame_sequence_potential_energy_frames'
+                    'xxx_to_rm_frame_sequence_potential_energy_frames'
                     )
                 )
             ),
@@ -1230,7 +1230,7 @@ def get_updateDictionary(self, defname):
             value=(lambda x: np.array(x['val']).flatten().shape[0] if(
                 x is not None and x['val'] is not None) else None)(
                 self.metaStorage.fetchAttrValue(
-                    'frame_sequence_kinetic_energy_frames'
+                    'xxx_to_rm_frame_sequence_kinetic_energy_frames'
                     )
                 )
             ),
@@ -1239,7 +1239,7 @@ def get_updateDictionary(self, defname):
             value=(lambda x: np.array(x['val']).flatten().shape[0] if(
                 x is not None and x['val'] is not None) else None)(
                 self.metaStorage.fetchAttrValue(
-                    'frame_sequence_potential_energy_frames'
+                    'xxx_to_rm_frame_sequence_potential_energy_frames'
                     )
                 )
             ),
@@ -1248,7 +1248,7 @@ def get_updateDictionary(self, defname):
             value=(lambda x: np.array(x['val']).flatten().shape[0] if(
                 x is not None and x['val'] is not None) else None)(
                 self.metaStorage.fetchAttrValue(
-                    'frame_sequence_pressure_frames'
+                    'xxx_to_rm_frame_sequence_pressure_frames'
                     )
                 )
             ),
@@ -1257,7 +1257,7 @@ def get_updateDictionary(self, defname):
             value=(lambda x: np.array(x['val']).flatten().shape[0] if(
                 x is not None and x['val'] is not None) else None)(
                 self.metaStorage.fetchAttrValue(
-                    'frame_sequence_temperature_frames'
+                    'xxx_to_rm_frame_sequence_temperature_frames'
                     )
                 )
             ),
@@ -1402,7 +1402,7 @@ def get_updateDictionary(self, defname):
         'number_of_symmetry_operations' : MetaInfoMap(startpage),
         'reduced_symmetry_matrices' : MetaInfoMap(startpage),
         'reduced_symmetry_translations' : MetaInfoMap(startpage),
-        'SC_matrix' : MetaInfoMap(startpage),
+        'sc_matrix' : MetaInfoMap(startpage),
         'spacegroup_3D_choice' : MetaInfoMap(startpage),
         'spacegroup_3D_hall' : MetaInfoMap(startpage),
         'spacegroup_3D_international' : MetaInfoMap(startpage),
