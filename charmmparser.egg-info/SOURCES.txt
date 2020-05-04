@@ -1,0 +1,11 @@
+README.md
+setup.py
+./charmmparser/CHARMMCommon.py
+./charmmparser/CHARMMDictionary.py
+./charmmparser/CHARMMParser.py
+./charmmparser/__init__.py
+./charmmparser.egg-info/PKG-INFO
+./charmmparser.egg-info/SOURCES.txt
+./charmmparser.egg-info/dependency_links.txt
+./charmmparser.egg-info/requires.txt
+./charmmparser.egg-info/top_level.txt
