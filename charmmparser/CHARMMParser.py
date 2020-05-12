@@ -20,10 +20,13 @@ import re
 import sys
 import datetime
 import io
+from nomadcore.simple_parser import mainFunction
 
 ############################################################
 # This is the parser for the main file of CHARMM.
 ############################################################
+
+parser = None
 
 TEXTCHARS = bytearray({7,8,9,10,12,13,27} | set(range(0x20, 0x100)) - {0x7f})
 
@@ -4016,6 +4019,7 @@ class CharmmParserInterface():
         backend = self.backend_factory("charmm.nomadmetainfo.json")
         parserInfo = {'name': 'charmm-parser', 'version': '1.0'}
         context = CHARMMParser()
+        context.coverageIgnore = re.compile(r"^(?:" + r"|".join(context.coverageIgnoreList) + r")$")
         with patch.object(sys, 'argv', ['<exe>', '--uri', 'nmd://uri', mainfile]):
             mainFunction(
                 mainFileDescription=context.mainFileDescription(),
