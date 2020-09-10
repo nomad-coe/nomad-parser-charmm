@@ -1,51 +1,78 @@
-# CHARMM Parser
-[NOMAD Laboratory CoE](http://nomad-coe.eu) parser for [CHARMM](https://www.charmm.org/charmm/)
-## Version 0.0.2
+This is a NOMAD parser for [CHARMM](https://www.charmm.org/charmm/). It will read CHARMM input and
+output files and provide all information in NOMAD's unified Metainfo based Archive format.
 
-This is the parser for CHARMM (Chemistry at HARvard Macromolecular Mechanics) code in [CHARMM](https://www.charmm.org/charmm/).
+## Preparing code input and output file for uploading to NOMAD
 
-## Features
-- All input and output files are expected to be in the supplied directory and its subdirectories.
-- The parser searches for the main input file for extraction more information of the order of the commands and 
-input CARDS. The main input file is assumed to hold at least 80% of the commands given to charmm main process.
-- `MINI`, `DYNA`, `ENER`, `GETE`, `PRINT`, `OPEN`, `READ`, and `WRITE` commands can be prossesed with this parser.
-- Any new `MINI`, `DYNA`, `ENER`, `GETE` commands are assumed to be a new simulation and each simulation is given in a new [section\_run](https://metainfo.nomad-coe.eu/nomadmetainfo_public/index.html#/public/section_run) in standardized meta information of NOMAD.
-- Parser can extract topology information from **PSF**, **RTF**, **PAR** files and CARDS through MDDataAccess package. 
-- **SEQ** CARDS can be read only for additional information if topology information is not complete.
-- Additional topology information can also be extracted from **COOR**, **CRD** files(ascii) and CARDS.
-- Input and output coordinates are mainly extracted from both ascii and binary **COOR** and **CRD** files/CARDS and 
-`PRINT COOR` commands. 
-...The coordinate information of the most recent command before any given command in the second item of this list is assumed to be the input coordinates of the simulation. Similarly, the next `PRINT`, `WRITE` command after each simulation is also assumed to be the output coordinates if trajectory data (`IUNCRD` or `IUNWRI` units) are missing. 
-- Trajectory of the simulations are also accessed through MDDataAccess package of [python-common](https://gitlab.rzg.mpg.de/nomad-lab/python-common).
+NOMAD accepts `.zip` and `.tar.gz` archives as uploads. Each upload can contain arbitrary
+files and directories. NOMAD will automatically try to choose the right parser for you files.
+For each parser (i.e. for each supported code) there is one type of file that the respective
+parser can recognize. We call these files `mainfiles` as they typically are the main
+output file a code. For each `mainfile` that NOMAD discovers it will create an entry
+in the database that users can search, view, and download. NOMAD will associate all files
+in the same directory as files that also belong to that entry. Parsers
+might also read information from these auxillary files. This way you can add more files
+to an entry, even if the respective parser/code might not directly support it.
 
-## Download and Installation
-The official version lives at:
+For charmm please provide at least the files from this table if applicable to your
+calculations (remember that you can provide more files if you want):
 
-    git@gitlab.mpcdf.mpg.de:nomad-lab/parser-charmm.git
 
-You can browse it at:
 
-    https://gitlab.rzg.mpg.de/nomad-lab/parser-charmm
+To create an upload with all calculations in a directory structure:
 
-It relies on having the nomad-meta-info and the python-common repositories one level higher.
-The simplest way to have this is to check out nomad-lab-base recursively:
+```
+zip -r <upload-file>.zip <directory>/*
+```
 
-    git clone --recursive git@gitlab.mpcdf.mpg.de:nomad-lab/nomad-lab-base.git
+Go to the [NOMAD upload page](https://nomad-lab.eu/prod/rae/gui/uploads) to upload files
+or find instructions about how to upload files from the command line.
 
-This parser will be in the directory parsers/charmm of this repository.
+## Using the parser
 
-## Running and Testing the Parser
-### Requirements
-The required python packages can be installed with (see [python-common](https://gitlab.rzg.mpg.de/nomad-lab/python-common)):
+You can use NOMAD's parsers and normalizers locally on your computer. You need to install
+NOMAD's pypi package:
 
-    pip install -r nomad-lab-base/python-common/requirements.txt
+```
+pip install nomad-lab
+```
 
-### Usage
-CHARMM MD log output files can be parsed with:
+To parse code input/output from the command line, you can use NOMAD's command line
+interface (CLI) and print the processing results output to stdout:
 
-    python CHARMMParser.py [path/toFile]
+```
+nomad parse --show-archive <path-to-file>
+```
 
-### Test Files
-Example log output files of CHARMM can be found in the directory test/examples.
-More details about the calculations and files are explained in the README file under examples directory.
+To parse a file in Python, you can program something like this:
+```python
+import sys
+from nomad.cli.parse import parse, normalize_all
 
+# match and run the parser
+backend = parse(sys.argv[1])
+# run all normalizers
+normalize_all(backend)
+
+# get the 'main section' section_run as a metainfo object
+section_run = backend.resource.contents[0].section_run[0]
+
+# get the same data as JSON serializable Python dict
+python_dict = section_run.m_to_dict()
+```
+
+## Developing the parser
+
+Also install NOMAD's pypi package:
+
+```
+pip install nomad-lab
+```
+
+Clone the parser project and install it in development mode:
+
+```
+git clone https://gitlab.mpcdf.mpg.de/nomad-lab/parser-charmm parser-charmm
+pip install -e parser-charmm
+```
+
+Running the parser now, will use the parser's Python code from the clone project.
