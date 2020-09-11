@@ -1,0 +1,6 @@
+codeLabel: CHARMM
+codeLabelStyle: all in capitals
+codeUrl: https://www.charmm.org/charmm/
+parserDirName: dependencies/parsers/charmm/
+parserGitUrl: https://gitlab.mpcdf.mpg.de/nomad-lab/parser-charmm
+tableOfFiles: ''
