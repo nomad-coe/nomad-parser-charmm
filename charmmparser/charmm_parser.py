@@ -35,7 +35,6 @@ class CharmmParser(BasicParser):
                 res['atom_labels'] = labels
                 res['atom_positions'] = np.array([v.split() for v in positions], dtype=np.dtype(np.float64)) * ureg.angstrom
             except Exception:
-                raise
                 pass
             return res
 
