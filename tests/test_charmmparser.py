@@ -36,15 +36,15 @@ def test_basic(parser):
 
     parser.parse('tests/data/brbtest/brbtest.out', archive, None)
 
-    sec_run = archive.section_run[0]
-    assert sec_run.program_version == 'Free Version 41b2   February 15, 2017'
+    sec_run = archive.run[0]
+    assert sec_run.program.version == 'Free Version 41b2   February 15, 2017'
 
-    sec_system = archive.section_run[0].section_system[0]
-    assert sec_system.atom_labels[1] == 'C'
-    assert sec_system.atom_positions[10][1].magnitude == approx(-7.7269e-11)
+    sec_system = archive.run[0].system[0]
+    assert sec_system.atoms.labels[1] == 'C'
+    assert sec_system.atoms.positions[10][1].magnitude == approx(-7.7269e-11)
 
-    sec_scc = sec_run.section_single_configuration_calculation[0]
-    assert sec_scc.energy_total.magnitude == approx(8.37550246e-20)
+    sec_scc = sec_run.calculation[0]
+    assert sec_scc.energy.total.value.magnitude == approx(8.37550246e-20)
 
 
 def test_1(parser):
@@ -52,10 +52,10 @@ def test_1(parser):
 
     parser.parse('tests/data/enertest/enertest.out', archive, None)
 
-    sec_system = archive.section_run[0].section_system[0]
-    assert len(sec_system.atom_positions) == 580
-    assert sec_system.atom_labels[86] == 'O'
-    assert sec_system.atom_positions[11][1].magnitude == approx(-4.005e-10)
+    sec_system = archive.run[0].system[0]
+    assert len(sec_system.atoms.positions) == 580
+    assert sec_system.atoms.labels[86] == 'O'
+    assert sec_system.atoms.positions[11][1].magnitude == approx(-4.005e-10)
 
-    sec_sccs = archive.section_run[0].section_single_configuration_calculation
-    assert sec_sccs[6].energy_total.magnitude == approx(-2.31823331e-18)
+    sec_sccs = archive.run[0].calculation
+    assert sec_sccs[6].energy.total.value.magnitude == approx(-2.31823331e-18)
