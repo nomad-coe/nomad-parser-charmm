@@ -22,7 +22,7 @@ from nomad.metainfo import (  # pylint: disable=unused-import
     MSection, MCategory, Category, Package, Quantity, Section, SubSection, SectionProxy,
     Reference
 )
-from nomad.datamodel.metainfo import run
+from nomad.datamodel.metainfo import simulation
 from nomad.datamodel.metainfo import workflow
 
 
@@ -1234,7 +1234,7 @@ class x_charmm_section_single_configuration_calculation(MSection):
     m_def = Section(validate=False)
 
 
-class System(run.system.System):
+class System(simulation.system.System):
 
     m_def = Section(validate=False, extends_base_section=True)
 
@@ -1428,7 +1428,7 @@ class MolecularDynamics(workflow.MolecularDynamics):
         ''',)
 
 
-class AtomParameters(run.method.AtomParameters):
+class AtomParameters(simulation.method.AtomParameters):
 
     m_def = Section(validate=False, extends_base_section=True)
 
@@ -1475,12 +1475,12 @@ class AtomParameters(run.method.AtomParameters):
         ''')
 
 
-class Interaction(run.method.Interaction):
+class Interaction(simulation.method.Interaction):
 
     m_def = Section(validate=False, extends_base_section=True)
 
     x_charmm_interaction_atom_to_atom_type_ref = Quantity(
-        type=run.method.AtomParameters,
+        type=simulation.method.AtomParameters,
         shape=['number_of_atoms_per_interaction'],
         description='''
         Reference to the atom type of each interaction atoms.
@@ -1494,7 +1494,7 @@ class Interaction(run.method.Interaction):
         ''')
 
     x_charmm_pair_interaction_atom_type_ref = Quantity(
-        type=run.method.AtomParameters,
+        type=simulation.method.AtomParameters,
         shape=['x_charmm_number_of_defined_pair_interactions', 'number_of_atoms_per_interaction'],
         description='''
         Reference to the atom type for pair interactions.
@@ -1508,7 +1508,7 @@ class Interaction(run.method.Interaction):
         ''')
 
     x_charmm_molecule_interaction_atom_to_atom_type_ref = Quantity(
-        type=run.method.AtomParameters,
+        type=simulation.method.AtomParameters,
         shape=['number_of_atoms_per_interaction'],
         description='''
         Reference to the atom type of each molecule interaction atoms.
@@ -1529,14 +1529,14 @@ class Interaction(run.method.Interaction):
         ''')
 
     x_charmm_pair_molecule_interaction_to_atom_type_ref = Quantity(
-        type=run.method.AtomParameters,
+        type=simulation.method.AtomParameters,
         shape=['x_charmm_number_of_defined_pair_interactions', 'number_of_atoms_per_interaction'],
         description='''
         Reference to the atom type for pair interactions within a molecule.
         ''')
 
 
-class Run(run.run.Run):
+class Run(simulation.run.Run):
 
     m_def = Section(validate=False, extends_base_section=True)
 
@@ -1692,7 +1692,7 @@ class Run(run.run.Run):
         repeats=True)
 
 
-class Calculation(run.calculation.Calculation):
+class Calculation(simulation.calculation.Calculation):
 
     m_def = Section(validate=False, extends_base_section=True)
 
